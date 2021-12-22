@@ -1,9 +1,9 @@
 version: "3.7"
 
 services:
-
   postgres:
     image: postgres:12.1
+    container_name: postgres
     environment:
       POSTGRES_USER: drkiq
       POSTGRES_PASSWORD: test_db_password
@@ -14,12 +14,14 @@ services:
 
   redis:
     image: redis:5.0.7
+    container_name: redis
     ports:
       - '6379:6379'
     volumes:
       - drkiq-redis:/var/lib/redis/data
 
   drkiq:
+    container_name: drkiq
     build:
       context: .
       args:
@@ -36,6 +38,7 @@ services:
       - .env
 
   sidekiq:
+    container_name: sidekiq
     build:
       context: .
       args:
@@ -49,6 +52,7 @@ services:
       - .env
 
   nginx:
+    container_name: nginx
     build:
       context: .
       dockerfile: ./Dockerfile.nginx
