@@ -45,6 +45,5 @@ output.elasticsearch:
             container.name: drkiq
     - index: "other-apps-%{[agent.version]}-%{+yyyy.MM.dd}"
 
-
 logging.json: true
 logging.metrics.enabled: false
